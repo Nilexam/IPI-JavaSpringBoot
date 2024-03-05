@@ -24,7 +24,7 @@ public class Stadium {
     private Club club;
 
     @OneToMany(mappedBy = "stadium")
-    private List<Match> matches;
+    private List<Game> games;
 
     public Stadium() {
     }
@@ -84,11 +84,11 @@ public class Stadium {
         this.club = club;
     }
 
-    public List<Match> getMatches() {
-        return matches;
+    public List<Game> getMatches() {
+        return games;
     }
 
-    public void setMatches(List<Match> matches) {
-        this.matches = matches;
+    public void setMatches(List<Game> games) {
+        this.games = games;
     }
 }

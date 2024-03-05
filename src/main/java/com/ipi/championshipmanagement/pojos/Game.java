@@ -6,7 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Match {
+public class Game {
 
     @Id
     @GeneratedValue
@@ -27,10 +27,10 @@ public class Match {
     @ManyToOne
     private Day day;
 
-    public Match() {
+    public Game() {
     }
 
-    public Match(int goalClub1, int goalClub2, Stadium stadium, Club club1, Club club2, Day day) {
+    public Game(int goalClub1, int goalClub2, Stadium stadium, Club club1, Club club2, Day day) {
         this.goalClub1 = goalClub1;
         this.goalClub2 = goalClub2;
         this.stadium = stadium;

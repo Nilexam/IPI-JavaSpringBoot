@@ -28,10 +28,10 @@ public class Club {
     private Stadium stadium;
 
     @OneToMany(mappedBy = "club1")
-    private List<Match> homeMatches;
+    private List<Game> homeGames;
 
     @OneToMany(mappedBy = "club2")
-    private List<Match> awayMatches;
+    private List<Game> awayGames;
 
     public Club() {
     }
@@ -146,19 +146,19 @@ public class Club {
         this.stadium = stadium;
     }
 
-    public List<Match> getHomeMatches() {
-        return homeMatches;
+    public List<Game> getHomeMatches() {
+        return homeGames;
     }
 
-    public void setHomeMatches(List<Match> homeMatches) {
-        this.homeMatches = homeMatches;
+    public void setHomeMatches(List<Game> homeGames) {
+        this.homeGames = homeGames;
     }
 
-    public List<Match> getAwayMatches() {
-        return awayMatches;
+    public List<Game> getAwayMatches() {
+        return awayGames;
     }
 
-    public void setAwayMatches(List<Match> awayMatches) {
-        this.awayMatches = awayMatches;
+    public void setAwayMatches(List<Game> awayGames) {
+        this.awayGames = awayGames;
     }
 }
