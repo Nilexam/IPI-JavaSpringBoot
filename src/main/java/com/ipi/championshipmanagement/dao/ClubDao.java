@@ -1,4 +1,7 @@
 package com.ipi.championshipmanagement.dao;
 
-public interface ClubDao {
+import com.ipi.championshipmanagement.pojos.Club;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ClubDao extends JpaRepository<Club, Long> {
 }
