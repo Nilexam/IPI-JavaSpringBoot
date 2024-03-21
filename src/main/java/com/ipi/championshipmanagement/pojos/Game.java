@@ -27,16 +27,20 @@ public class Game {
     @ManyToOne
     private Day day;
 
+    @ManyToOne
+    private Championship championship;
+
     public Game() {
     }
 
-    public Game(int goalClub1, int goalClub2, Stadium stadium, Club club1, Club club2, Day day) {
+    public Game(int goalClub1, int goalClub2, Stadium stadium, Club club1, Club club2, Day day, Championship championship) {
         this.goalClub1 = goalClub1;
         this.goalClub2 = goalClub2;
         this.stadium = stadium;
         this.club1 = club1;
         this.club2 = club2;
         this.day = day;
+        this.championship = championship;
     }
 
     public long getId() {
