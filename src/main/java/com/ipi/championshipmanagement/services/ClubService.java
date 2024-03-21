@@ -13,4 +13,5 @@ public interface ClubService {
 
     void deleteClub(long clubId);
 
+    void save(Club psg);
 }

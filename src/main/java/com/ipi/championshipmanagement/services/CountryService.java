@@ -13,4 +13,5 @@ public interface CountryService {
 
     void deleteCountry(long countryId);
 
+    void save(Country france);
 }

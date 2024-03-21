@@ -13,4 +13,5 @@ public interface StadiumService {
 
     void deleteStadium(long stadiumId);
 
+    void save(Stadium anfield);
 }

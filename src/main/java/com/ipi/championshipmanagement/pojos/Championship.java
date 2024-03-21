@@ -1,10 +1,6 @@
 package com.ipi.championshipmanagement.pojos;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -27,8 +23,8 @@ public class Championship {
     @ManyToOne
     private Country country;
 
-    @ManyToOne
-    private Club club;
+    @ManyToMany
+    private List<Club> club;
 
     @ManyToOne
     private Day day;
@@ -40,7 +36,7 @@ public class Championship {
     }
 
     public Championship(String name, String logo, Date dateBeginning, Date dateEnd, int pointGagne,
-                        int pointPerdu, int pointNul, String classementType, Country country, Club club, Day day) {
+                        int pointPerdu, int pointNul, String classementType, Country country, List<Club> club, Day day) {
         this.name = name;
         this.logo = logo;
         this.dateBeginning = dateBeginning;
@@ -134,11 +130,11 @@ public class Championship {
         this.country = country;
     }
 
-    public Club getClub() {
+    public List<Club> getClub() {
         return club;
     }
 
-    public void setClub(Club club) {
+    public void setClub(List<Club> club) {
         this.club = club;
     }
 

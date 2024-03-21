@@ -15,4 +15,6 @@ public interface ChampionshipService {
     List<Championship> findAllChampionships();
     List<Game> findGames(Championship championship);
     List<Championship> findChampionshipsByCountry(String countryName);
+
+    void save(Championship ligue1);
 }

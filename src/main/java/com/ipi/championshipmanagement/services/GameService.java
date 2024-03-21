@@ -13,4 +13,5 @@ public interface GameService {
 
     void deleteGame(long gameId);
 
+    void save(Game game1);
 }

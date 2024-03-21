@@ -21,8 +21,8 @@ public class Club {
     private String phone;
     private String webSite;
 
-    @ManyToOne
-    private Championship championship;
+    @ManyToMany(mappedBy = "club")
+    private List<Championship> championships;
 
     @OneToOne
     private Stadium stadium;
@@ -130,12 +130,12 @@ public class Club {
         this.webSite = webSite;
     }
 
-    public Championship getChampionship() {
-        return championship;
+    public List<Championship> getChampionships() {
+        return championships;
     }
 
-    public void setChampionship(Championship championship) {
-        this.championship = championship;
+    public void setChampionships(List<Championship> championships) {
+        this.championships = championships;
     }
 
     public Stadium getStadium() {
@@ -146,19 +146,19 @@ public class Club {
         this.stadium = stadium;
     }
 
-    public List<Game> getHomeMatches() {
+    public List<Game> getHomeGames() {
         return homeGames;
     }
 
-    public void setHomeMatches(List<Game> homeGames) {
+    public void setHomeGames(List<Game> homeGames) {
         this.homeGames = homeGames;
     }
 
-    public List<Game> getAwayMatches() {
+    public List<Game> getAwayGames() {
         return awayGames;
     }
 
-    public void setAwayMatches(List<Game> awayGames) {
+    public void setAwayGames(List<Game> awayGames) {
         this.awayGames = awayGames;
     }
 }
