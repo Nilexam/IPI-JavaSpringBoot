@@ -12,8 +12,11 @@ import java.util.Optional;
 @Service
 public class ClubServiceImpl implements ClubService {
 
-    @Autowired
-    private ClubDao clubDao;
+    private final ClubDao clubDao;
+
+    public ClubServiceImpl(ClubDao clubDao) {
+        this.clubDao = clubDao;
+    }
 
     @Override
     public List<Club> getAllClubs() {
@@ -34,6 +37,11 @@ public class ClubServiceImpl implements ClubService {
     @Override
     public void deleteClub(long clubId) {
         clubDao.deleteById(clubId);
+    }
+
+    @Override
+    public void save(Club club) {
+        clubDao.save(club);
     }
 
 }

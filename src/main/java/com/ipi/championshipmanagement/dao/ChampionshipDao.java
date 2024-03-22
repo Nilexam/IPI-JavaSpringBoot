@@ -16,6 +16,4 @@ public interface ChampionshipDao extends JpaRepository<Championship, Long> {
     List<Championship> findByDay(Day day);
 
     List<Championship> findByClub(Club club);
-
-    List<Championship> findByStadium(Stadium stadium);
 }

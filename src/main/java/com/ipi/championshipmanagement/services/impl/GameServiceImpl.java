@@ -12,8 +12,11 @@ import java.util.Optional;
 @Service
 public class GameServiceImpl implements GameService {
 
-    @Autowired
-    private GameDao gameDao;
+    private final GameDao gameDao;
+
+    public GameServiceImpl(GameDao gameDao) {
+        this.gameDao = gameDao;
+    }
 
     @Override
     public List<Game> getAllGames() {
@@ -34,6 +37,11 @@ public class GameServiceImpl implements GameService {
     @Override
     public void deleteGame(long gameId) {
         gameDao.deleteById(gameId);
+    }
+
+    @Override
+    public void save(Game game) {
+        gameDao.save(game);
     }
 
 }

@@ -14,12 +14,12 @@ import java.util.List;
 @Service
 public class ChampionshipServiceImpl implements ChampionshipService {
 
-    private ChampionshipDao championshipDao;
-    private GameDao gameDao;
+    private final ChampionshipDao championshipDao;
+    private final GameDao gameDao;
 
-    @Override
-    public Championship addChampionship(Championship championship) {
-        return null;
+    public ChampionshipServiceImpl(ChampionshipDao championshipDao, GameDao gameDao) {
+        this.championshipDao = championshipDao;
+        this.gameDao = gameDao;
     }
 
     @Override
@@ -45,5 +45,10 @@ public class ChampionshipServiceImpl implements ChampionshipService {
     @Override
     public List<Championship> findChampionshipsByCountry(String countryName) {
         return null;
+    }
+
+    @Override
+    public void save(Championship championship) {
+        championshipDao.save(championship);
     }
 }

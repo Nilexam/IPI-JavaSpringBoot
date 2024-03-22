@@ -12,8 +12,11 @@ import java.util.Optional;
 @Service
 public class DayServiceImpl implements DayService {
 
-    @Autowired
-    private DayDao dayDao;
+    private final DayDao dayDao;
+
+    public DayServiceImpl(DayDao dayDao) {
+        this.dayDao = dayDao;
+    }
 
     @Override
     public List<Day> getAllDays() {
@@ -34,6 +37,11 @@ public class DayServiceImpl implements DayService {
     @Override
     public void deleteDay(long dayId) {
         dayDao.deleteById(dayId);
+    }
+
+    @Override
+    public void save(Day day) {
+        dayDao.save(day);
     }
 
 }

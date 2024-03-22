@@ -12,8 +12,11 @@ import java.util.Optional;
 @Service
 public class StadiumServiceImpl implements StadiumService {
 
-    @Autowired
-    private StadiumDao stadiumDao;
+    private final StadiumDao stadiumDao;
+
+    public StadiumServiceImpl(StadiumDao stadiumDao) {
+        this.stadiumDao = stadiumDao;
+    }
 
     @Override
     public List<Stadium> getAllStadiums() {
@@ -34,6 +37,11 @@ public class StadiumServiceImpl implements StadiumService {
     @Override
     public void deleteStadium(long stadiumId) {
         stadiumDao.deleteById(stadiumId);
+    }
+
+    @Override
+    public void save(Stadium stadium) {
+        stadiumDao.save(stadium);
     }
 
 }
