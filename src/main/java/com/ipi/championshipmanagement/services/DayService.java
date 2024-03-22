@@ -13,5 +13,5 @@ public interface DayService {
 
     void deleteDay(long dayId);
 
-    void save(Day day1);
+    void save(Day day);
 }

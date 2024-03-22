@@ -12,8 +12,11 @@ import java.util.Optional;
 @Service
 public class CountryServiceImpl implements CountryService {
 
-    @Autowired
-    private CountryDao countryDao;
+    private final CountryDao countryDao;
+
+    public CountryServiceImpl(CountryDao countryDao) {
+        this.countryDao = countryDao;
+    }
 
     @Override
     public List<Country> getAllCountries() {
@@ -34,6 +37,11 @@ public class CountryServiceImpl implements CountryService {
     @Override
     public void deleteCountry(long countryId) {
         countryDao.deleteById(countryId);
+    }
+
+    @Override
+    public void save(Country country) {
+        countryDao.save(country);
     }
 
 }
