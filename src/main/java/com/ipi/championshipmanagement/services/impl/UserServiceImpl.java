@@ -3,7 +3,6 @@ package com.ipi.championshipmanagement.services.impl;
 import com.ipi.championshipmanagement.dao.UserDao;
 import com.ipi.championshipmanagement.pojos.User;
 import com.ipi.championshipmanagement.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,6 +29,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUserByEmail(String email) {
+        Optional<User> optionalUser = Optional.ofNullable(userDao.findByEmail(email));
+        return optionalUser.orElse(null);
+    }
+
+    @Override
+    public User getUserByLogin(String login) {
+        Optional<User> optionalUser = Optional.ofNullable(userDao.findByLogin(login));
+        return optionalUser.orElse(null);
+    }
+
+    @Override
     public User saveUser(User user) {
         return userDao.save(user);
     }
@@ -42,5 +53,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByLogin(String login) {
         return userDao.findByLogin(login);
+    }
+
+    @Override
+    public boolean emailExists(String email) {
+        return userDao.existsByEmail(email) ;
+    }
+
+    @Override
+    public boolean loginExists(String login) {
+        return userDao.existsByLogin(login) ;
     }
 }
