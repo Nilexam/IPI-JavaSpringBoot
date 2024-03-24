@@ -39,17 +39,17 @@
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h3 class="mb-0">Lyon</h3>
                 <div th:if="${session.user != null and !editing}">
-                    <form th:action="@{/toggle}" method="post">
+                    <form th:action="@{/detail/toggle}" method="post">
                         <button class="btn btn-primary" type="submit">
                             <i class="bi bi-pen"></i> <!-- Bootstrap pen icon -->
                         </button>
                     </form>
                 </div>
                 <div th:if="${editing}"  class="d-flex justify-content-between align-items-center">
-                    <form th:action="@{/save}" method="post">
+                    <form th:action="@{/detail/save}" method="post">
                         <button class="btn btn-success " type="submit">Enregistrer</button>
                     </form>
-                    <form th:action="@{/cancel}" method="post">
+                    <form th:action="@{/detail/cancel}" method="post">
                         <button class="btn btn-danger ml-2" type="submit">Annuler</button>
                     </form>
                 </div>
