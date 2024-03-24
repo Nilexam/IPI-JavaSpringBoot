@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.ArrayList;
 
 @Controller
 public class InitDataController {
@@ -35,8 +38,8 @@ public class InitDataController {
         countryService.save(england);
         countryService.save(france);
 
-        Championship ligue1 = new Championship("Ligue 1", "/img/ligue1.png", new Date(), new Date(), 3, 0, 1, "standard", france, null, null);
-        Championship premierLeague = new Championship("Premier League", "/img/premierLeague.png", new Date(), new Date(), 3, 0, 1, "standard", england, null, null);
+        Championship ligue1 = new Championship("Ligue 1", "/img/ligue1.png", new Date(), new Date(), "standard", france, new ArrayList<>(), null, null);
+        Championship premierLeague = new Championship("Premier League", "/img/premierLeague.png", new Date(), new Date(), "standard", england, new ArrayList<>(), null, null);
         championshipService.save(premierLeague);
         championshipService.save(ligue1);
 
@@ -45,8 +48,14 @@ public class InitDataController {
         clubService.save(liverpool);
         clubService.save(psg);
 
-        psg.setChampionships(Arrays.asList(ligue1));
-        liverpool.setChampionships(Arrays.asList(premierLeague));
+        Map<Club, Integer> pointsLigue1 = new HashMap<>();
+        pointsLigue1.put(psg, 3);
+        Map<Club, Integer> pointsPremierLeague = new HashMap<>();
+        pointsPremierLeague.put(liverpool, 3);
+
+        ligue1.setPointsEquipe(pointsLigue1);
+        premierLeague.setPointsEquipe(pointsPremierLeague);
+
         clubService.save(liverpool);
         clubService.save(psg);
 

@@ -3,6 +3,7 @@ package com.ipi.championshipmanagement.pojos;
 import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 public class Championship {
@@ -15,9 +16,6 @@ public class Championship {
     private String logo;
     private Date dateBeginning;
     private Date dateEnd;
-    private int pointGagne;
-    private int pointPerdu;
-    private int pointNul;
     private String classementType;
 
     @ManyToOne
@@ -32,22 +30,26 @@ public class Championship {
     @OneToMany(mappedBy = "championship")
     private List<Game> games;
 
+    @ElementCollection
+    @CollectionTable(name = "championship_club_points")
+    @MapKeyJoinColumn(name = "club_id")
+    @Column(name = "points")
+    private Map<Club, Integer> pointsEquipe;
+
     public Championship() {
     }
 
-    public Championship(String name, String logo, Date dateBeginning, Date dateEnd, int pointGagne,
-                        int pointPerdu, int pointNul, String classementType, Country country, List<Club> club, Day day) {
+    public Championship(String name, String logo, Date dateBeginning, Date dateEnd, String classementType,
+                        Country country, List<Club> club, Day day, Map<Club, Integer> pointsEquipe) {
         this.name = name;
         this.logo = logo;
         this.dateBeginning = dateBeginning;
         this.dateEnd = dateEnd;
-        this.pointGagne = pointGagne;
-        this.pointPerdu = pointPerdu;
-        this.pointNul = pointNul;
         this.classementType = classementType;
         this.country = country;
         this.club = club;
         this.day = day;
+        this.pointsEquipe = pointsEquipe;
     }
 
     public long getId() {
@@ -90,30 +92,6 @@ public class Championship {
         this.dateEnd = dateEnd;
     }
 
-    public int getPointGagne() {
-        return pointGagne;
-    }
-
-    public void setPointGagne(int pointGagne) {
-        this.pointGagne = pointGagne;
-    }
-
-    public int getPointPerdu() {
-        return pointPerdu;
-    }
-
-    public void setPointPerdu(int pointPerdu) {
-        this.pointPerdu = pointPerdu;
-    }
-
-    public int getPointNul() {
-        return pointNul;
-    }
-
-    public void setPointNul(int pointNul) {
-        this.pointNul = pointNul;
-    }
-
     public String getClassementType() {
         return classementType;
     }
@@ -152,5 +130,13 @@ public class Championship {
 
     public void setGames(List<Game> games) {
         this.games = games;
+    }
+
+    public Map<Club, Integer> getPointsEquipe() {
+        return pointsEquipe;
+    }
+
+    public void setPointsEquipe(Map<Club, Integer> pointsEquipe) {
+        this.pointsEquipe = pointsEquipe;
     }
 }

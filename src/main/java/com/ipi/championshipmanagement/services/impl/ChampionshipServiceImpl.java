@@ -3,6 +3,7 @@ package com.ipi.championshipmanagement.services.impl;
 import com.ipi.championshipmanagement.dao.ChampionshipDao;
 import com.ipi.championshipmanagement.dao.GameDao;
 import com.ipi.championshipmanagement.pojos.Championship;
+import com.ipi.championshipmanagement.pojos.Club;
 import com.ipi.championshipmanagement.pojos.Game;
 import com.ipi.championshipmanagement.services.ChampionshipService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ChampionshipServiceImpl implements ChampionshipService {
@@ -25,6 +27,11 @@ public class ChampionshipServiceImpl implements ChampionshipService {
     @Override
     public Championship findChampionshipById(long id) {
         return championshipDao.findById(id).orElse(null);
+    }
+
+    @Override
+    public Championship addChampionship(Championship championship) {
+        return championshipDao.save(championship);
     }
 
     @Override
@@ -48,7 +55,15 @@ public class ChampionshipServiceImpl implements ChampionshipService {
     }
 
     @Override
-    public void save(Championship championship) {
+    public void saveWithPoints(Championship championship, Map<Club, Integer> pointsEquipe) {
+        if (pointsEquipe != null) {
+            championship.setPointsEquipe(pointsEquipe);
+        }
         championshipDao.save(championship);
+    }
+
+    @Override
+    public void save(Championship championship) {
+        saveWithPoints(championship, null);
     }
 }
