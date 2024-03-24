@@ -26,7 +26,12 @@
                     </li>
                 </ul>
                 <div class="d-flex">
-                    <a href="/login" class="btn btn-outline-primary" type="submit">Connexion</a>
+                    <div th:if="${session.user == null}">
+                        <a href="/login" class="btn btn-outline-primary" type="submit">Connexion</a>
+                    </div>
+                    <div th:if="${session.user != null}">
+                        <a href="/profile" class="btn btn-outline-primary" type="submit">Profile</a>
+                    </div>
                 </div>
             </div>
         </div>
