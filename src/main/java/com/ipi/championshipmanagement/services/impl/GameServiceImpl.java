@@ -1,6 +1,7 @@
 package com.ipi.championshipmanagement.services.impl;
 
 import com.ipi.championshipmanagement.dao.GameDao;
+import com.ipi.championshipmanagement.pojos.Championship;
 import com.ipi.championshipmanagement.pojos.Game;
 import com.ipi.championshipmanagement.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,11 @@ public class GameServiceImpl implements GameService {
     @Override
     public List<Game> getAllGames() {
         return (List<Game>) gameDao.findAll();
+    }
+
+    @Override
+    public List<Game> getGamesByChampionship(Championship championship) {
+        return gameDao.findByChampionship(championship);
     }
 
     @Override

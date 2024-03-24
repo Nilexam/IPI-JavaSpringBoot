@@ -18,19 +18,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/detail">Détail</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/result">Résultats</a>
-                    </li>
                 </ul>
                 <div class="d-flex">
                     <div th:if="${session.user == null}">
                         <a href="/login" class="btn btn-outline-primary" type="submit">Connexion</a>
                     </div>
                     <div th:if="${session.user != null}">
-                        <a href="/profile" class="btn btn-outline-primary" type="submit">Profile</a>
+                        <a href="/logout" class="btn btn-danger" type="submit">Déconnexion</a>
                     </div>
                 </div>
             </div>
@@ -40,38 +34,13 @@
     <div class="container-fluid">
         <div class="container mt-5">
             <div class="row">
-                <div class="col-3">
-                    <a href="">
-                        <div class="card text-bg-dark">
-                            <img src="img/ligue-1.png" class="card-img" alt="Ligue 1">
+                <div class="col-3" data-th-each="championship : ${championships}">
+                    <a data-th-href="@{'/result?id=' + ${championship.id}}">
+                        <div class="card text-bg-light">
+                            <img src="img/ligue-1.png" data-th-src="${championship.logo}" class="card-img" alt="Ligue 1">
                         </div>
                     </a>
                 </div>
-
-                <div class="col-3">
-                    <a href="">
-                        <div class="card text-bg-dark">
-                            <img src="img/ligue-2.png" class="card-img" alt="Ligue 2">
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-3">
-                    <a href="">
-                        <div class="card text-bg-dark">
-                            <img src="img/ligue-nationale.png" class="card-img" alt="Ligue Nationale">
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-3">
-                    <a href="">
-                        <div class="card text-bg-dark">
-                            <img src="img/ligue-feminine.png" class="card-img" alt="Ligue Féminine D1">
-                        </div>
-                    </a>
-                </div>
-
             </div>
         </div>
     </div>
