@@ -22,7 +22,6 @@ public class User {
     @Column(unique = true)
     private String login;
 
-    @NotNull
     private String password;
 
     private String nickname;
