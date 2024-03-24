@@ -113,15 +113,15 @@
                 <div class="row">
                     <div class="col-4">
                         <div class="row">
-                            <a data-th-href="@{'/detail?id=' + ${game.getClub1().id}}" href="#" class=" d-flex text-decoration-none text-dark">
+                            <div class=" d-flex text-decoration-none text-dark">
                                 <div class="col-6 d-flex justify-content-start align-items-center">
                                     <img data-th-src="${game.getClub1().getLogo()}" src="img/ol.png" alt="Image" class="img-fluid w-25">
                                 </div>
                                 <div class="col-6 text-ceter">
-                                    <h3 data-th-text="${game.getClub1().getName()}" class="h5">Steelers</h3>
-                                    <span  data-th-text="${game.getClub1().getHeadquarters()}" class="text-uppercase small country">London</span>
+                                    <input type="text" class="form-control form-control-sm" th:value="${game.getClub1().getName()}" name="nameClub1">
+                                    <input type="text" class="form-control form-control-sm" th:value="${game.getClub1().getHeadquarters()}" name="hqClub1">
                                 </div>
-                            </a>
+                            </div>
                         </div>
                     </div>
 
@@ -149,17 +149,20 @@
 
                     <div class="col-4">
                         <div class="row">
-                            <a data-th-href="@{'/detail?id=' + ${game.getClub2().id}}" href="#" class=" d-flex text-decoration-none text-dark gap-2">
+                            <div class=" d-flex text-decoration-none text-dark gap-2">
                                 <div class="col-6 text-center">
-                                    <h3 data-th-text="${game.getClub2().getName()}" class="h5">Steelers</h3>
-                                    <span  data-th-text="${game.getClub2().getHeadquarters()}" class="text-uppercase small country">London</span>
+                                    <input type="text" class="form-control form-control-sm" th:value="${game.getClub2().getName()}" name="nameClub2">
+                                    <input type="text" class="form-control form-control-sm" th:value="${game.getClub2().getHeadquarters()}" name="hqClub2">
                                 </div>
                                 <div class="col-6 d-flex justify-content-end align-items-center">
                                     <img data-th-src="${game.getClub2().getLogo()}" src="img/ol.png" alt="Image" class="img-fluid w-25">
                                 </div>
                                 <button class="btn btn-success"  type="submit">Save <i class="bi bi-check"></i></button>
-                            </a>
+                            </div>
                         </div>
+                    </div>
+                    <div class="alert alert-danger mt-2" role="alert" th:if="${errorMessage}">
+                        <strong>Error:</strong> <span th:text="${errorMessage}"></span>
                     </div>
                 </div>
 
