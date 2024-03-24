@@ -10,6 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.support.SessionStatus;
 
 import java.io.Console;
 import java.util.Date;
@@ -41,5 +42,12 @@ public class LoginController {
            }
        }
         return "login";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session, SessionStatus sessionStatus) {
+        session.invalidate();
+        sessionStatus.setComplete();
+        return "index";
     }
 }
