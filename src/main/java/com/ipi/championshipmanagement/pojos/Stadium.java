@@ -29,11 +29,12 @@ public class Stadium {
     public Stadium() {
     }
 
-    public Stadium(String name, String address, int capacity, String phone) {
+    public Stadium(String name, String address, int capacity, String phone, Club club) {
         this.name = name;
         this.address = address;
         this.capacity = capacity;
         this.phone = phone;
+        this.club = club;
     }
 
     public long getId() {

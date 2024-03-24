@@ -1,7 +1,9 @@
 package com.ipi.championshipmanagement.services.impl;
 
 import com.ipi.championshipmanagement.dao.ClubDao;
+import com.ipi.championshipmanagement.dao.StadiumDao;
 import com.ipi.championshipmanagement.pojos.Club;
+import com.ipi.championshipmanagement.pojos.Stadium;
 import com.ipi.championshipmanagement.services.ClubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +14,11 @@ import java.util.Optional;
 @Service
 public class ClubServiceImpl implements ClubService {
 
-    private final ClubDao clubDao;
+    @Autowired
+    private StadiumDao stadiumDao;
+
+    @Autowired
+    private ClubDao clubDao;
 
     public ClubServiceImpl(ClubDao clubDao) {
         this.clubDao = clubDao;
@@ -42,6 +48,11 @@ public class ClubServiceImpl implements ClubService {
     @Override
     public void save(Club club) {
         clubDao.save(club);
+    }
+
+    @Override
+    public Stadium getStadium(Club club) {
+        return stadiumDao.findByClub(club);
     }
 
 }

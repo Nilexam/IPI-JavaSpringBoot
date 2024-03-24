@@ -14,4 +14,7 @@ public interface StadiumService {
     void deleteStadium(long stadiumId);
 
     void save(Stadium stadium);
+
+    Stadium getStadiumByIdClub(Long id);
+
 }
