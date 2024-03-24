@@ -30,21 +30,21 @@ public class DetailController {
         return "detail";
     }
 
-    @PostMapping({"/toggle"})
+    @PostMapping({"/detail/toggle"})
     public String toggleEditing(Model model) {
         editing = !editing;
         model.addAttribute("editing", editing);
         return "redirect:/detail";
     }
 
-    @PostMapping({"/save"})
+    @PostMapping({"/detail/save"})
     public String saveEditing(Model model) {
         editing = false;
         model.addAttribute("editing", editing);
         return "redirect:/detail";
     }
 
-    @PostMapping({"/cancel"})
+    @PostMapping({"/detail/cancel"})
     public String cancelEditing(Model model) {
         editing = false;
         model.addAttribute("editing", editing);
