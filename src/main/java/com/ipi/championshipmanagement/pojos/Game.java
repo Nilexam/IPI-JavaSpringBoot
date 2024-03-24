@@ -99,4 +99,17 @@ public class Game {
         this.day = day;
     }
 
+    @Override
+    public String toString() {
+        return "Game{" +
+                "id=" + id +
+                ", goalClub1='" + goalClub1 + '\'' +
+                ", goalClub2='" + goalClub2 + '\'' +
+                ", stadium='" + stadium.toString() + '\'' +
+                ", club1='" + club1.toString() + '\'' +
+                ", club2='" + club1.toString() + '\'' +
+                ", day='" + day.toString() + '\'' +
+                ", championship='" + championship.toString() + '\'' +
+                '}';
+    }
 }

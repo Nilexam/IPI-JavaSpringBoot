@@ -2,6 +2,7 @@ package com.ipi.championshipmanagement.controller;
 
 import com.ipi.championshipmanagement.pojos.User;
 import com.ipi.championshipmanagement.services.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,9 +46,16 @@ public class LoginController {
     }
 
     @GetMapping("/logout")
-    public String logout(HttpSession session, SessionStatus sessionStatus) {
+    public String logout(HttpSession session, SessionStatus sessionStatus, HttpServletRequest request) {
         session.invalidate();
         sessionStatus.setComplete();
-        return "index";
+
+        String referrer = request.getHeader("referer");
+
+        if (referrer == null || referrer.isEmpty()) {
+            return "redirect:/index";
+        } else {
+            return "redirect:" + referrer;
+        }
     }
 }
