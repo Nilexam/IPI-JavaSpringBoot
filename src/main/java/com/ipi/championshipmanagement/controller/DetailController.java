@@ -1,13 +1,12 @@
 package com.ipi.championshipmanagement.controller;
 
 import com.ipi.championshipmanagement.pojos.Club;
-import com.ipi.championshipmanagement.pojos.User;
+import com.ipi.championshipmanagement.pojos.Stadium;
 import com.ipi.championshipmanagement.services.ClubService;
+import com.ipi.championshipmanagement.services.StadiumService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,15 +17,21 @@ public class DetailController {
     
     private final ClubService clubService;
 
-    public DetailController(ClubService clubService) {
+    private final StadiumService stadiumService;
+
+    public DetailController(ClubService clubService, StadiumService stadiumService) {
         this.clubService = clubService;
+        this.stadiumService = stadiumService;
     }
     @GetMapping({"/detail"})
-    public String index(Model model) {
-        Club club = clubService.getClubById(1);
+    public String index(Model model, @RequestParam(name = "id", required = false) Long idClub) {
+        Club club = clubService.getClubById(idClub);
+        Stadium stadium = club.getStadium();
 
-        model.addAttribute("name", club.getName());
-        model.addAttribute("editing", editing);
+        System.out.println(stadium);
+
+        model.addAttribute("club", club);
+        model.addAttribute("stadium", stadium);
         return "detail";
     }
 

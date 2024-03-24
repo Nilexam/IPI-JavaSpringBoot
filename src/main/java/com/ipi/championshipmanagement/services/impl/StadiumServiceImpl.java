@@ -2,20 +2,24 @@ package com.ipi.championshipmanagement.services.impl;
 
 import com.ipi.championshipmanagement.dao.StadiumDao;
 import com.ipi.championshipmanagement.pojos.Stadium;
+import com.ipi.championshipmanagement.pojos.Club;
 import com.ipi.championshipmanagement.services.StadiumService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.ipi.championshipmanagement.services.ClubService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @Service
 public class StadiumServiceImpl implements StadiumService {
 
     private final StadiumDao stadiumDao;
+    private final ClubService clubService;
 
-    public StadiumServiceImpl(StadiumDao stadiumDao) {
+    public StadiumServiceImpl(StadiumDao stadiumDao, ClubService clubService) {
         this.stadiumDao = stadiumDao;
+        this.clubService = clubService;
     }
 
     @Override
@@ -43,5 +47,18 @@ public class StadiumServiceImpl implements StadiumService {
     public void save(Stadium stadium) {
         stadiumDao.save(stadium);
     }
+
+    @Override
+    public Stadium getStadiumByIdClub(Long clubId) {
+        List<Stadium> allStadiums = getAllStadiums();
+        for (Stadium stadium : allStadiums) {
+            if (stadium.getClub() != null && stadium.getClub().getId() == clubId) {
+                return stadium;
+            }
+        }
+        return null;
+    }
+
+
 
 }

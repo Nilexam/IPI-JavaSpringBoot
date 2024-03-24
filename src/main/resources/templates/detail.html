@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Football</title>
@@ -36,66 +36,42 @@
 <div class="container-fluid">
     <div class="container mt-4">
         <div class="card mb-4">
-            <div class="card-header d-flex justify-content-between align-items-center">
-                <h3 class="mb-0">Lyon</h3>
-                <div th:if="${session.user != null and !editing}">
-                    <form th:action="@{/detail/toggle}" method="post">
-                        <button class="btn btn-primary" type="submit">
-                            <i class="bi bi-pen"></i> <!-- Bootstrap pen icon -->
-                        </button>
-                    </form>
-                </div>
-                <div th:if="${editing}"  class="d-flex justify-content-between align-items-center">
-                    <form th:action="@{/detail/save}" method="post">
-                        <button class="btn btn-success " type="submit">Enregistrer</button>
-                    </form>
-                    <form th:action="@{/detail/cancel}" method="post">
-                        <button class="btn btn-danger ml-2" type="submit">Annuler</button>
-                    </form>
-                </div>
+            <div class="card-header">
+                <h3>Lyon</h3>
             </div>
             <div class="card-body">
                 <section id="general">
                     <div class="row">
                         <div class="col-6">
-                            <p>Nom : <strong data-th-text="${name}">Olympique Lyonnais</strong></p>
-                            <p>Fondé en : 1950</p>
-                            <p>Président : Jean-Michel Aulas</p>
-                            <p>Entraineur : Laurent BLANC</p>
+                            <p>Nom : <strong th:text="${club.name}"></strong></p>
+                            <p>Fondé en : <span th:text="${club.dateCreation}"></span></p>
+                            <p>Président : <span th:text="${club.president}"></span></p>
+                            <p>Entraineur : <span th:text="${club.nameTrainer}"></span></p>
                         </div>
                         <div class="col-6">
-                            <img src="img/ol.png" alt="Logo de l'Olympique Lyonnais" class="img-fluid w-25" />
+                            <img th:src="${club.logo}" class="img-fluid w-25" />
                         </div>
                     </div>
                 </section>
 
                 <section id="administratif" class="mt-3">
                     <h5 class="w-100 text-bold p-2" style="background-color: #f8f8f8">Administratif</h5>
-                    <p>Site : www.olweb.fr</p>
+                    <p>Site : <a th:href="${club.webSite}" th:text="${club.webSite}"></a></p>
                     <hr>
-                    <p>Statut : <strong>SASP</strong></p>
+                    <p>Statut : <span th:text="${club.status}"></span></p>
                     <hr>
-                    <p>
-                        Siège : <br>
-                        <strong>10 Avenue Silmone VeilCS 70712</strong> <br>
-                        <strong>CS 70712</strong> <br>
-                        <strong>69150 Décines-Charpieu</strong>
-                    </p>
+                    <p>Siège : <span th:text="${club.getHeadquarters()}"></span></p>
                 </section>
 
                 <section id="stade" class="mt-3">
                     <h5 class="w-100 text-bold p-2" style="background-color: #f8f8f8">Stade de Lyon</h5>
-                    <p>Stade : <strong>Groupama Stadium</strong></p>
+                    <p>Stade : <strong th:text="${stadium.name}"></strong></p>
                     <hr>
-                    <p>Capacité : <strong>59186 places</strong></p>
+                    <p>Capacité : <strong th:text="${stadium.capacity}"></strong> places</p>
                     <hr>
-                    <p>
-                        Adresse du stade : <br>
-                        <strong>10 Avenue Simone Veil</strong> <br>
-                        <strong>69150 Décines-Charpieu</strong>
-                    </p>
+                    <p>Adresse du stade : <span th:text="${stadium.address}"></span></p>
                     <hr>
-                    <p>Tél. Stade : <strong>08.92.69.69.69</strong></p>
+                    <p>Tél. Stade : <span th:text="${stadium.phone}"></span></p>
                 </section>
             </div>
         </div>

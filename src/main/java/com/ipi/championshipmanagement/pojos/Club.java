@@ -37,7 +37,7 @@ public class Club {
     }
 
     public Club(String name, String dateCreation, String logo, String nameTrainer, String president,
-                String status, String headquarters, String phone, String webSite) {
+                String status, String headquarters, String phone, String webSite, Stadium stadium) {
         this.name = name;
         this.dateCreation = dateCreation;
         this.logo = logo;
@@ -47,6 +47,7 @@ public class Club {
         this.headquarters = headquarters;
         this.phone = phone;
         this.webSite = webSite;
+        this.stadium = stadium;
     }
 
     // Getters et Setters
@@ -161,4 +162,5 @@ public class Club {
     public void setAwayGames(List<Game> awayGames) {
         this.awayGames = awayGames;
     }
+
 }
