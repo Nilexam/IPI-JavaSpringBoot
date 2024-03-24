@@ -23,30 +23,30 @@
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                 <div class="card-body p-4 p-lg-5 text-black">
                     
-                                    <form>
+                                    <form action="/login" method="post" data-th-action="@{/login}" data-th-object="${user}" accept-charset="utf-8">
                     
                                     <div class="d-flex align-items-center mb-3 pb-1">
                                         <span class="h1 fw-bold mb-0">Connexion</span>
                                     </div>
                     
                                     <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Se connecter à votre compte</h5>
-                    
+
                                     <div class="form-outline mb-4">
-                                        <input type="email" id="email" name="email" class="form-control form-control-lg" />
-                                        <label class="form-label" for="email">Email</label>
+                                        <input data-th-field="*{login}" type="text" id="login" name="login" class="form-control form-control-lg" />
+                                        <label class="form-label" for="login">Identifiant</label>
                                     </div>
                     
                                     <div class="form-outline mb-4">
-                                        <input type="password" id="password" name="password" class="form-control form-control-lg" />
+                                        <input data-th-field="*{password}" type="password" id="password" name="password" class="form-control form-control-lg" />
                                         <label class="form-label" for="password">Mot de passe</label>
                                     </div>
                     
                                     <div class="pt-1 mb-4">
-                                        <button class="btn btn-dark btn-lg btn-block" type="button">Se connecter</button>
+                                        <button class="btn btn-dark btn-lg btn-block" type="submit">Se connecter</button>
                                     </div>
 
-                                    <div id="erreur">
-                                        <p style="color:red;">Erreur*</p>
+                                    <div id="erreur" data-th-if="${#fields.hasAnyErrors()}">
+                                        <p style="color:red;" data-th-each="err : ${#fields.allErrors()}" data-th-text="${err}">Erreurs</p>
                                     </div>
                     
                                     <p class="mb-5 pb-lg-2" style="color: #393f81;">Pas de compte ? <a href="/signup" style="color: #393f81;">S'inscrire ici</a></p>
