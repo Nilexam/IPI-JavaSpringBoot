@@ -80,5 +80,13 @@ public class InitDataController {
         Game game2 = new Game(3, 2, anfield, liverpool, psg, day2, premierLeague);
         gameService.save(game1);
         gameService.save(game2);
+
+        Map<Club, Integer> pointsEquipe = new HashMap<>();
+        pointsEquipe.put(psg, 10);
+        pointsEquipe.put(liverpool, 22);
+
+        ligue1.setPointsEquipe(pointsEquipe);
+
+        championshipService.save(ligue1);
     }
 }

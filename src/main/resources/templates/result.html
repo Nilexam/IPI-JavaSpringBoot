@@ -23,6 +23,11 @@
                     <option data-th-each="championship : ${championships}" data-th-value="${championship.id}" data-th-text="${championship.getName()}" th:selected="${championship.id == idChampionship}">Ligne 1</option>
                 </select>
             </div>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" data-th-href="@{'/ranking?id=' + ${currChamp.id}}">Voir le classement</a>
+                </li>
+            </ul>
             <div class="d-flex">
                 <div th:if="${session.user == null}">
                     <a href="/login" class="btn btn-outline-primary" type="submit">Connexion</a>
