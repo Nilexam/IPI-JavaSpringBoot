@@ -20,8 +20,9 @@ public class InitDataController {
     private final DayService dayService;
     private final GameService gameService;
     private final StadiumService stadiumService;
+    private final UserService userService;
 
-    public InitDataController(CountryService countryService, ChampionshipService championshipService, ClubService clubService, DayService dayService, GameService gameService, StadiumService stadiumService) {
+    public InitDataController(CountryService countryService, ChampionshipService championshipService, ClubService clubService, DayService dayService, GameService gameService, StadiumService stadiumService, UserService userService) {
         super();
         this.countryService = countryService;
         this.championshipService = championshipService;
@@ -29,6 +30,7 @@ public class InitDataController {
         this.dayService = dayService;
         this.gameService = gameService;
         this.stadiumService = stadiumService;
+        this.userService = userService;
     }
 
     @PostConstruct
@@ -88,5 +90,8 @@ public class InitDataController {
         ligue1.setPointsEquipe(pointsEquipe);
 
         championshipService.save(ligue1);
+
+        User user1 = new User(1, "John", "Doe", "johnDoe39", "123456", "jodo", "johndoe@gmail.com");
+        userService.saveUser(user1);
     }
 }
